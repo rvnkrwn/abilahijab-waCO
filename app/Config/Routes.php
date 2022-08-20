@@ -37,9 +37,11 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Pages::index');
 $routes->get('/shop', 'Pages::shop');
+$routes->get('/detail/(:segment)', 'Pages::detail/$1');
 $routes->get('/about', 'Pages::about');
 $routes->get('/login', 'Pages::login');
 $routes->get('/register', 'Pages::register');
+$routes->post('/checkout', 'Pages::checkout');
 
 
 // CRUD Controller
@@ -48,6 +50,19 @@ $routes->post('/login', 'Users::checkData');
 $routes->get('/logout', 'Users::logout');
 
 
+
+// Admin Routes
+$routes->get('/admin','Admins::index');
+$routes->get('/admin/users','Admins::users');
+$routes->get('/admin/products','Admins::products');
+$routes->get('/admin/reports','Admins::reports');
+
+
+// CRUD Controller Admin
+$routes->post('/admin/register', 'Admins::newUser');
+$routes->post('/admin/new-product', 'Admins::newProduct');
+$routes->get('/admin/delete/(:segment)', 'Admins::deleteUser/$1');
+$routes->get('/admin/delete-product/(:segment)', 'Admins::deleteProduct/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

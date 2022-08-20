@@ -14,10 +14,13 @@ class Users extends BaseController
         //
         return http_response_code(404);
     }
+
+    /**
+     * @throws \ReflectionException
+     */
     public function saveData()
     {
         if (!$this->validate($this->UsersModel->getValidationRules())) {
-            $this->UsersModel->getValidationMessages();
             $validation = \Config\Services::validation();
             return redirect()->back()->withInput()->with('validation',$validation);
         }
@@ -35,27 +38,27 @@ class Users extends BaseController
         $postcode   =   " ";
         $country    =   "indonesia";
         $role       =   "member";
-        $create_at  =   Time::now();
-        $update_at  =   Time::now();
+        $create_at  =   Time::now('Asia/Jakarta');
+        $update_at  =   Time::now('Asia/Jakarta');
 
-        $data   =   [
-            'userid'    =>  $userid,
-            'avatar'    =>  $avatar,
-            'name'      =>  $name,
-            'email'     =>  $email,
-            'password'  =>  $hash,
-            'phone'     =>  $phone,
-            'address1'  =>  $address1,
-            'address2'  =>  $address2,
-            'city'      =>  $city,
-            'province'  =>  $province,
-            'postcode'  =>  $postcode,
-            'country'   =>  $country,
-            'role'      =>  $role,
-            'create_at' =>  $create_at,
-            'update_at' =>  $update_at,
+        $query   =   [
+            'userid'    =>  htmlspecialchars($userid),
+            'avatar'    =>  htmlspecialchars($avatar),
+            'name'      =>  htmlspecialchars($name),
+            'email'     =>  htmlspecialchars($email),
+            'password'  =>  htmlspecialchars($hash),
+            'phone'     =>  htmlspecialchars($phone),
+            'address1'  =>  htmlspecialchars($address1),
+            'address2'  =>  htmlspecialchars($address2),
+            'city'      =>  htmlspecialchars($city),
+            'province'  =>  htmlspecialchars($province),
+            'postcode'  =>  htmlspecialchars($postcode),
+            'country'   =>  htmlspecialchars($country),
+            'role'      =>  htmlspecialchars($role),
+            'create_at' =>  htmlspecialchars($create_at),
+            'update_at' =>  htmlspecialchars($update_at),
         ];
-        if ($this->UsersModel->insert($data)){
+        if ($this->UsersModel->insert($query)){
             return redirect()->to(base_url().'/login',)->withInput();
         }
     }
@@ -70,7 +73,11 @@ class Users extends BaseController
                     'userid'    => $data['userid'],
                 ];
                 session()->set($sesi);
-                return redirect()->to(base_url());
+                if ($data['role'] == "admin") {
+                    return redirect()->to('admin');
+                } else {
+                    return redirect()->to(base_url());
+                }
             } else {
                 return redirect()->back()->with("wrongPassword","<small id='error' class='text-danger'>Your password is wrong</small>");
             }

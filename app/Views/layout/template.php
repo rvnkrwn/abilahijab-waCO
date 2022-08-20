@@ -5,16 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="keyword" content="abila, abila hijab, abilahijab, grosir hijab, hijab murah, toko hijab, toko abila, hijab abila, Abila Hijab,&nbsp;<?php
-    $handle = fopen("keyword.txt", "r");
-    if ($handle) {
-        while (($line = fgets($handle)) !== false) {
-            $line = str_replace(' ',', ',$line);
-            echo $line;
-        }
-        fclose($handle);
-    }
-    ?>">
+    <meta name="keyword" content="<?= $keyword ?>">
     <meta name="author" content="abilahijab">
     <meta name="copyright" content="Copyright AbilaHijab - 2022">
     <meta name="email" content="admin@abilahijab.com">
@@ -24,10 +15,10 @@
     <meta name="Robots" content="INDEX,FOLLOW">
     <meta name="description" content="<?= $description ?>">
     <meta name="google-site-verification" content="mwuxabAl6N0oKrWVrY8llIpDzQRzEFfed0B7XEvebLo" />
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= base_url() ?>/favicon.ico">
+    <link rel="icon" href="<?= base_url() ?>/favicon.ico" type="image/x-icon">
     <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aboreto&display=swap" rel="stylesheet">
@@ -159,7 +150,7 @@
 </nav>
 <section id="notifOngkir" class="d-flex flex-row justify-content-center bg-success bg-gradient text-white pt-2 px-2">
     <div class="align-self-center d-block p-1">
-        <h6 class="" style="font-family: 'Poppins', sans-serif; font-size: 11px;">GRATIS ONGKIR untuk wilayah Pulau Jawa</h6>
+        <h6 class="" style="font-family: 'Poppins', sans-serif; font-size: 11px;">GRATIS ONGKIR untuk wilayah Pulau Jawa<br>(minimal pembelian 1 lusin atau 12pcs)</h6>
     </div>
     <div class="align-self-center d-block" style="cursor:pointer;" onclick="document.querySelector('#notifOngkir').classList.add('d-none')">
         <ion-icon name="close-outline" class="fs-5 p-2"></ion-icon>
@@ -234,6 +225,9 @@
                                 <button type="submit" class="border-0 bg-transparent"><i class="fal fa-envelope"></i></button>
                             </form>
                         </li>
+                        <li class="mt-4">
+                            <p>cs-email: <a href="mailto:admin@abilahijab.com" class="text-black text-decoration-none">admin@abilahijab.com</a></p>
+                        </li>
                     </ul>
                 </div>
                 <!--Grid column-->
@@ -288,13 +282,13 @@
                         role="button"
                 ><i class="fab fa-linkedin-in"></i
                     ></a>
-                <!-- Github -->
+                <!-- Whatsapp -->
                 <a
                         class="btn btn-primary btn-floating m-1"
-                        style="background-color: #333333;"
+                        style="background-color: #0c4128;"
                         href="#!"
                         role="button"
-                ><i class="fab fa-github"></i
+                ><i class="fab fa-whatsapp"></i
                     ></a>
             </section>
             <!-- Section: Social media -->
@@ -334,7 +328,7 @@
         })
     }
 </script>
-<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="<?= base_url() ?>/js/bootstrap.bundle.min.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script>
@@ -368,6 +362,12 @@
         }
     }
     window.addEventListener('load', navActive);
+</script>
+<script>
+    function beli(idproduct,name,alamat,kota,kodepos,provinsi)
+    {
+
+    }
 </script>
 </body>
 </html>

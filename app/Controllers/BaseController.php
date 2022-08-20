@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\ProductsModel;
 use App\Models\UsersModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
@@ -51,5 +52,6 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = \Config\Services::session();
         session();
         $this->UsersModel = new UsersModel();
+        $this->ProductsModel = new ProductsModel();
     }
 }
